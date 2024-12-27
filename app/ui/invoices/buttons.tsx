@@ -26,10 +26,17 @@ export function UpdateInvoice({ id }: { id: string }) {
 }
 
 export function DeleteInvoice({ id }: { id: string }) {
-	const deleteInvoiceWithId = deleteInvoice.bind(null, id);
+	// const deleteInvoiceWithId = deleteInvoice.bind(null, id);
+	const handleDelete = async () => {
+		await deleteInvoice(id);
+
+		// Можно добавить дополнительную логику после удаления, например, перезагрузка данных
+		// Router.refresh() или что-то подобное.
+	};
 
 	return (
-		<form action={deleteInvoiceWithId}>
+		// <form action={deleteInvoiceWithId}>
+		<form action={handleDelete}>
 			<button type='submit' className='rounded-md border p-2 hover:bg-gray-100'>
 				<span className='sr-only'>Delete</span>
 				<TrashIcon className='w-5' />
